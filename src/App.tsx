@@ -1,16 +1,21 @@
 import React from 'react';
-import './App.css';
-import Calculator from './Calculator';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Calculator from './components/Calculator';
+
+import './styles/index.css';
 
 function App() {
-  return (
-    <div className="App bg-gray-100 min-h-screen">
-      <header className="text-center">
-        <h1 className="text-xl p-4">Express Entry Calculator</h1>
-        <Calculator />
-      </header>
-    </div>
-  );
+    return (
+        <div className="flex flex-col min-h-screen">
+            <Navbar />
+            <main className="flex-grow container mx-auto p-4">
+                <h2 className="text-xl mb-4 text-center">Check Your Eligibility</h2>
+                <Calculator />
+            </main>
+            <Footer />
+        </div>
+    );
 }
 
 export default App;
