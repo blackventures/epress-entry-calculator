@@ -1,5 +1,24 @@
 import React, { useState } from 'react';
 
+type PrincipalCanadaWork = "Working in Canada" | "LMIA Job Offer" | "No Job or LMIA";
+type YesNo = "Yes" | "No";
+
+function getAgePoints(age: number): number {
+  if (age < 36 && age > 17) return 12;
+  if (age === 36) return 11;
+  if (age === 37) return 10;
+  if (age === 39) return 9;
+  if (age === 40) return 8;
+  if (age === 41) return 7;
+  if (age === 42) return 6;
+  if (age === 43) return 5;
+  if (age === 44) return 3;
+  if (age === 45) return 2;
+  if (age === 46) return 1;
+  // ... add other conditions for age here
+  return 0;
+}
+
 const Calculator: React.FC = () => {
   const [englishScore, setEnglishScore] = useState<number>(0);
   const [eligibilityResult, setEligibilityResult] = useState<string | null>(null);
