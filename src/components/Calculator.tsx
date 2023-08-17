@@ -88,9 +88,9 @@ const Calculator: React.FC = () => {
   return (
     <div className="p-8">
       {/* Age Input */}
-      <label className="block mb-4">
+      <label className=" text-red-900 font-bold block mb-4">
         Age:
-        <input type="number" value={age} onChange={(e) => setAge(Number(e.target.value))} className="ml-2 p-1 border border-gray-300 rounded w-full" />
+        <input type="number" value={age} onChange={(e) => setAge(Number(e.target.value))} className="  bg-blue mx-auto ml-2 p-1 border border-gray-300 rounded w-full" />
       </label>
 
       {/* Work Years Input */}

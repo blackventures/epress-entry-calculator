@@ -9,8 +9,8 @@ function App() {
     return (
         <div className="flex flex-col min-h-screen">
             <Navbar />
-            <main className="flex-grow container mx-auto p-4">
-                <h2 className="text-xl mb-4 text-center">Check Your Eligibility</h2>
+            <main className="flex-grow container mx-auto p-4 bg-red">
+                <h2 className="text-3xl mb-4 text-center">Check Your Eligibility</h2>
                 <Calculator />
             </main>
             <Footer />
