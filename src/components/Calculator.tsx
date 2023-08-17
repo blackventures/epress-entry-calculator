@@ -68,35 +68,60 @@ function getAdaptabilityPoints(
 
 
 const Calculator: React.FC = () => {
-  const [englishScore, setEnglishScore] = useState<number>(0);
-  const [eligibilityResult, setEligibilityResult] = useState<string | null>(null);
+  const [age, setAge] = useState<number>(0);
+  const [workYears, setWorkYears] = useState<number>(0);
+  const [principalCanadaWork, setPrincipalCanadaWork] = useState<PrincipalCanadaWork>("No Job or LMIA");
+  const [principalPreviousStudy, setPrincipalPreviousStudy] = useState<YesNo>("No");
+  const [spousePreviousStudy, setSpousePreviousStudy] = useState<YesNo>("No");
+  const [spouseCanadaWork, setSpouseCanadaWork] = useState<YesNo>("No");
+  const [spouseLanguage, setSpouseLanguage] = useState<YesNo>("No");
+  const [canadianRelative, setCanadianRelative] = useState<YesNo>("No");
 
-  const handleSubmit = async () => {
-    // Mocked response logic for now
-    const MINIMUM_SCORE = 5;
+  const handleSubmit = () => {
+    const totalPoints = getAgePoints(age) + getWorkYearsPoints(workYears) + getWorkExperiencePoints(principalCanadaWork);
+    const adaptabilityPoints = getAdaptabilityPoints(principalCanadaWork, principalPreviousStudy, spousePreviousStudy, spouseCanadaWork, spouseLanguage, canadianRelative);
+    const finalPoints = totalPoints + adaptabilityPoints;
 
-    if (englishScore >= MINIMUM_SCORE) {
-        setEligibilityResult('You are eligible!');
-    } else {
-        setEligibilityResult('You are not eligible.');
-    }
+    // Use finalPoints to determine eligibility...
   };
 
   return (
-    <div className="flex flex-col items-center mt-12">
-      <label className="mb-4">
-        English Score:
-        <input
-          type="number"
-          value={englishScore}
-          onChange={(e) => setEnglishScore(Number(e.target.value))}
-          className="ml-2 p-1 border border-gray-300 rounded"
-        />
+    <div className="p-8">
+      {/* Age Input */}
+      <label className="block mb-4">
+        Age:
+        <input type="number" value={age} onChange={(e) => setAge(Number(e.target.value))} className="ml-2 p-1 border border-gray-300 rounded w-full" />
       </label>
-      <button onClick={handleSubmit} className="bg-blue-500 text-white px-4 py-2 rounded">Check Eligibility</button>
-      {eligibilityResult && <p className="mt-4">{eligibilityResult}</p>}
+
+      {/* Work Years Input */}
+      <label className="block mb-4">
+        Work Years:
+        <input type="number" value={workYears} onChange={(e) => setWorkYears(Number(e.target.value))} className="ml-2 p-1 border border-gray-300 rounded w-full" />
+      </label>
+
+      {/* Dropdowns */}
+      <label className="block mb-4">
+        Principal Canada Work:
+        <select value={principalCanadaWork} onChange={(e) => setPrincipalCanadaWork(e.target.value as PrincipalCanadaWork)} className="ml-2 p-1 border border-gray-300 rounded w-full">
+          <option value="Working in Canada">Working in Canada</option>
+          <option value="LMIA Job Offer">LMIA Job Offer</option>
+          <option value="No Job or LMIA">No Job or LMIA</option>
+        </select>
+      </label>
+
+      <label className="block mb-4">
+        Principal Previous Study in Canada:
+        <select value={principalPreviousStudy} onChange={(e) => setPrincipalPreviousStudy(e.target.value as YesNo)} className="ml-2 p-1 border border-gray-300 rounded w-full">
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </label>
+
+      {/* ... Add similar dropdowns for other factors here... */}
+
+      <button onClick={handleSubmit} className="bg-blue-500 text-white px-4 py-2 rounded mt-4">Calculate</button>
     </div>
   );
-}
+};
 
 export default Calculator;
