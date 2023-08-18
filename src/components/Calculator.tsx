@@ -107,9 +107,9 @@ const Calculator: React.FC = () => {
     const finalPoints = totalPoints + adaptabilityPoints;
 
     if (finalPoints < 67) {
-      setEligibilityMessage("You do not have enough points to be eligible. You currently have " + finalPoints + " and you need to 67 points);
+        setEligibilityMessage(`You do not have enough points to be eligible. You currently have ${finalPoints} and you need 67 points.`);
     } else {
-      setEligibilityMessage("You have " + finalPoints + " so you are eligible.");
+        setEligibilityMessage(`You have ${finalPoints} so you are eligible.`);
     }
     // Use finalPoints to determine eligibility...
   };
