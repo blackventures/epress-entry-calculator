@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 type PrincipalCanadaWork = "Working in Canada" | "LMIA Job Offer" | "No Job or LMIA";
 type Education = 
+    "None"|
     "Secondary school/high school diploma" |
     "One-year post-secondary degree" |
     "Two-year post-secondary degree" |
@@ -91,7 +92,7 @@ function getAdaptabilityPoints(
 const Calculator: React.FC = () => {
   const [age, setAge] = useState<number>(0);
   const [workYears, setWorkYears] = useState<number>(0);
-  const [education, setEducation] = useState<Education>("Secondary school/high school diploma")
+  const [education, setEducation] = useState<Education>("None")
   const [principalCanadaWork, setPrincipalCanadaWork] = useState<PrincipalCanadaWork>("No Job or LMIA");
   const [principalPreviousStudy, setPrincipalPreviousStudy] = useState<YesNo>("No");
   const [spousePreviousStudy, setSpousePreviousStudy] = useState<YesNo>("No");
@@ -133,6 +134,7 @@ const Calculator: React.FC = () => {
       <label className="block mb-4">
         Education:
         <select value={education} onChange={(e) => setEducation(e.target.value as Education)} className="ml-2 p-1 border border-gray-300 rounded w-full">
+          <option value="None">None</option>
           <option value="Secondary school/high school diploma">Secondary school/high school diploma</option>
           <option value="One-year post-secondary degree">One-year post-secondary degree</option>
           <option value="Two-year post-secondary degree">Two-year post-secondary degree</option>
