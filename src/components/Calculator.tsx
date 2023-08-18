@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 
 type PrincipalCanadaWork = "Working in Canada" | "LMIA Job Offer" | "No Job or LMIA";
+type Education = 
+    "Secondary school/high school diploma" |
+    "One-year post-secondary degree" |
+    "Two-year post-secondary degree" |
+    "Three-year or longer post-secondary degree" |
+    "Two or more post-secondary degree with one being three-year or longer" |
+    "Master's level or professional degree (Medicine Veterinary Medicine Dentistry Podiatry Optometry Law Chiropractic Medicine or Pharmacy)" |
+    "Doctoral (PhD) level";
 type YesNo = "Yes" | "No";
 
 function getAgePoints(age: number): number {
@@ -16,6 +24,19 @@ function getAgePoints(age: number): number {
   if (age === 45) return 2;
   if (age === 46) return 1;
   return 0;
+}
+
+function getEducationPoints(education: Education): number {
+  switch (education) {
+      case "Secondary school/high school diploma": return 5;
+      case "One-year post-secondary degree": return 15;
+      case "Two-year post-secondary degree": return 19;
+      case "Three-year or longer post-secondary degree": return 21;
+      case "Two or more post-secondary degree with one being three-year or longer": return 22;
+      case "Master's level or professional degree (Medicine Veterinary Medicine Dentistry Podiatry Optometry Law Chiropractic Medicine or Pharmacy)": return 23;
+      case "Doctoral (PhD) level": return 25;
+      default: return 0;
+  }
 }
 
 function getWorkExperiencePoints(type: PrincipalCanadaWork): number {
@@ -70,18 +91,26 @@ function getAdaptabilityPoints(
 const Calculator: React.FC = () => {
   const [age, setAge] = useState<number>(0);
   const [workYears, setWorkYears] = useState<number>(0);
+  const [education, setEducation] = useState<Education>("Secondary school/high school diploma")
   const [principalCanadaWork, setPrincipalCanadaWork] = useState<PrincipalCanadaWork>("No Job or LMIA");
   const [principalPreviousStudy, setPrincipalPreviousStudy] = useState<YesNo>("No");
   const [spousePreviousStudy, setSpousePreviousStudy] = useState<YesNo>("No");
   const [spouseCanadaWork, setSpouseCanadaWork] = useState<YesNo>("No");
   const [spouseLanguage, setSpouseLanguage] = useState<YesNo>("No");
   const [canadianRelative, setCanadianRelative] = useState<YesNo>("No");
+  const [eligibilityMessage, setEligibilityMessage] = useState<string>("");
+
 
   const handleSubmit = () => {
-    const totalPoints = getAgePoints(age) + getWorkYearsPoints(workYears) + getWorkExperiencePoints(principalCanadaWork);
+    const totalPoints = getAgePoints(age) + getWorkYearsPoints(workYears) + getWorkExperiencePoints(principalCanadaWork) + getEducationPoints(education);
     const adaptabilityPoints = getAdaptabilityPoints(principalCanadaWork, principalPreviousStudy, spousePreviousStudy, spouseCanadaWork, spouseLanguage, canadianRelative);
     const finalPoints = totalPoints + adaptabilityPoints;
 
+    if (finalPoints < 67) {
+      setEligibilityMessage("They are not eligible.");
+    } else {
+      setEligibilityMessage("They are eligible.");
+    }
     // Use finalPoints to determine eligibility...
   };
 
@@ -148,11 +177,31 @@ const Calculator: React.FC = () => {
           <option value="No">No</option>
         </select>
       </label>
+
+      <label className="block mb-4">
+        Education:
+        <select value={education} onChange={(e) => setEducation(e.target.value as Education)} className="ml-2 p-1 border border-gray-300 rounded w-full">
+          <option value="Secondary school/high school diploma">Secondary school/high school diploma</option>
+          <option value="One-year post-secondary degree">One-year post-secondary degree</option>
+          <option value="Two-year post-secondary degree">Two-year post-secondary degree</option>
+          <option value="Three-year or longer post-secondary degree">Three-year or longer post-secondary degree</option>
+          <option value="Two or more post-secondary degree with one being three-year or longer">Two or more post-secondary degree with one being three-year or longer</option>
+          <option value="Master's level or professional degree (Medicine Veterinary Medicine Dentistry Podiatry Optometry Law Chiropractic Medicine or Pharmacy)">Master's level or professional degree (Medicine Veterinary Medicine Dentistry Podiatry Optometry Law Chiropractic Medicine or Pharmacy)</option>
+          <option value="Doctoral (PhD) level">Doctoral (PhD) level</option>
+        </select>
+      </label>
       {/* ... Add similar dropdowns for other factors here... */}
 
       <button onClick={handleSubmit} className="bg-blue-500 text-white px-4 py-2 rounded mt-4">Calculate</button>
+      
+      {/* Display the eligibility message */}
+      {eligibilityMessage && (
+        <div className="mt-4">
+          {eligibilityMessage}
+        </div>
+      )}
     </div>
-  // 
+
   );
 };
 
