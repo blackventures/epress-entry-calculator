@@ -117,10 +117,42 @@ const Calculator: React.FC = () => {
         </select>
       </label>
 
+      <label className="block mb-4">
+        Spouse Previous Study in Canada:
+        <select value={spousePreviousStudy} onChange={(e) => setSpousePreviousStudy(e.target.value as YesNo)} className="ml-2 p-1 border border-gray-300 rounded w-full">
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </label>
+
+      <label className="block mb-4">
+        Spouse Canada Work:
+        <select value={spouseCanadaWork} onChange={(e) => setSpouseCanadaWork(e.target.value as YesNo)} className="ml-2 p-1 border border-gray-300 rounded w-full">
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </label>
+
+      <label className="block mb-4">
+        Spouse Language :
+        <select value={spouseLanguage} onChange={(e) => setSpouseLanguage(e.target.value as YesNo)} className="ml-2 p-1 border border-gray-300 rounded w-full">
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </label>
+
+      <label className="block mb-4">
+        Canadian Relative:
+        <select value={canadianRelative} onChange={(e) => setCanadianRelative(e.target.value as YesNo)} className="ml-2 p-1 border border-gray-300 rounded w-full">
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </label>
       {/* ... Add similar dropdowns for other factors here... */}
 
       <button onClick={handleSubmit} className="bg-blue-500 text-white px-4 py-2 rounded mt-4">Calculate</button>
     </div>
+  // 
   );
 };
 
