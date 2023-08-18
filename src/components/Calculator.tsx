@@ -107,9 +107,9 @@ const Calculator: React.FC = () => {
     const finalPoints = totalPoints + adaptabilityPoints;
 
     if (finalPoints < 67) {
-      setEligibilityMessage("You are not eligible, you need atleast 67 points and you currently have " + finalPoints);
+      setEligibilityMessage("They are not eligible.");
     } else {
-      setEligibilityMessage("You have " + finalPoints + "You are eligible.");
+      setEligibilityMessage("They are eligible.");
     }
     // Use finalPoints to determine eligibility...
   };
@@ -129,6 +129,20 @@ const Calculator: React.FC = () => {
       </label>
 
       {/* Dropdowns */}
+
+      <label className="block mb-4">
+        Education:
+        <select value={education} onChange={(e) => setEducation(e.target.value as Education)} className="ml-2 p-1 border border-gray-300 rounded w-full">
+          <option value="Secondary school/high school diploma">Secondary school/high school diploma</option>
+          <option value="One-year post-secondary degree">One-year post-secondary degree</option>
+          <option value="Two-year post-secondary degree">Two-year post-secondary degree</option>
+          <option value="Three-year or longer post-secondary degree">Three-year or longer post-secondary degree</option>
+          <option value="Two or more post-secondary degree with one being three-year or longer">Two or more post-secondary degree with one being three-year or longer</option>
+          <option value="Master's level or professional degree (Medicine Veterinary Medicine Dentistry Podiatry Optometry Law Chiropractic Medicine or Pharmacy)">Master's level or professional degree (Medicine Veterinary Medicine Dentistry Podiatry Optometry Law Chiropractic Medicine or Pharmacy)</option>
+          <option value="Doctoral (PhD) level">Doctoral (PhD) level</option>
+        </select>
+      </label>
+
       <label className="block mb-4">
         Principal Canada Work:
         <select value={principalCanadaWork} onChange={(e) => setPrincipalCanadaWork(e.target.value as PrincipalCanadaWork)} className="ml-2 p-1 border border-gray-300 rounded w-full">
@@ -178,18 +192,6 @@ const Calculator: React.FC = () => {
         </select>
       </label>
 
-      <label className="block mb-4">
-        Education:
-        <select value={education} onChange={(e) => setEducation(e.target.value as Education)} className="ml-2 p-1 border border-gray-300 rounded w-full">
-          <option value="Secondary school/high school diploma">Secondary school/high school diploma</option>
-          <option value="One-year post-secondary degree">One-year post-secondary degree</option>
-          <option value="Two-year post-secondary degree">Two-year post-secondary degree</option>
-          <option value="Three-year or longer post-secondary degree">Three-year or longer post-secondary degree</option>
-          <option value="Two or more post-secondary degree with one being three-year or longer">Two or more post-secondary degree with one being three-year or longer</option>
-          <option value="Master's level or professional degree (Medicine Veterinary Medicine Dentistry Podiatry Optometry Law Chiropractic Medicine or Pharmacy)">Master's level or professional degree (Medicine Veterinary Medicine Dentistry Podiatry Optometry Law Chiropractic Medicine or Pharmacy)</option>
-          <option value="Doctoral (PhD) level">Doctoral (PhD) level</option>
-        </select>
-      </label>
       {/* ... Add similar dropdowns for other factors here... */}
 
       <button onClick={handleSubmit} className="bg-blue-500 text-white px-4 py-2 rounded mt-4">Calculate</button>
@@ -204,5 +206,4 @@ const Calculator: React.FC = () => {
 
   );
 };
-
 export default Calculator;
