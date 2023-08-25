@@ -12,6 +12,7 @@ type Education =
     "Doctoral (PhD) level";
 type YesNo = "Yes" | "No";
 type LanguageScore = "Below Average" | "Average" | "Above Average" | "Excellent";
+type LanguageProficiency = "Less than high basic (CLB3-, IELTS 2.5-3)" | "High basic (CLB4, IELTS 3.5)" | "Initial intermediate (CLB5, IELTS 4-4.5)" | "Developing intermediate (CLB6, IELTS 5-5.5)" | "Adequate intermediate (CLB7, IELTS 6)" | "High intermediate (CLB8, IELTS 6.5)" | "Initial Advanced (CLB9, IELTS 7)" | "Advanced (CLB10+, IELTS 8+)";
 type SecondLanguage = "Yes" | "No";
 
 function getAgePoints(age: number): number {
@@ -90,12 +91,16 @@ function getAdaptabilityPoints(
   return Math.min(10, points);
 }
 
-function getLanguagePoints(score: LanguageScore): number {
+function getLanguagePoints(score: LanguageProficiency): number {
   switch (score) {
-      case "Below Average": return 0;
-      case "Average": return 16;
-      case "Above Average": return 20;
-      case "Excellent": return 24;
+    case "Less than high basic (CLB3-, IELTS 2.5-3)": return 0;
+    case "High basic (CLB4, IELTS 3.5)": return 16;
+    case "Initial intermediate (CLB5, IELTS 4-4.5)": return 20;
+    case "Developing intermediate (CLB6, IELTS 5-5.5)": return 24;
+    case "Adequate intermediate (CLB7, IELTS 6)": return 24;
+    case "High intermediate (CLB8, IELTS 6.5)": return 24;
+    case "Initial Advanced (CLB9, IELTS 7)": return 24;
+    case "Advanced (CLB10+, IELTS 8+)": return 24;
       default: return 0;
   }
 }
@@ -114,14 +119,25 @@ const Calculator: React.FC = () => {
   const [spouseCanadaWork, setSpouseCanadaWork] = useState<YesNo>("No");
   const [spouseLanguage, setSpouseLanguage] = useState<YesNo>("No");
   const [canadianRelative, setCanadianRelative] = useState<YesNo>("No");
-  const [languageScore, setLanguageScore] = useState<LanguageScore>("Below Average");
+  const [languageScore, setLanguageScore] = useState<LanguageProficiency>("Less than high basic (CLB3-, IELTS 2.5-3)");
+
+  // Testing Features
+  const [readingScore, setReadingScore] = useState<LanguageProficiency>("Less than high basic (CLB3-, IELTS 2.5-3)");
+  const [writingScore, setWritingScore] = useState<LanguageProficiency>("Less than high basic (CLB3-, IELTS 2.5-3)");
+  const [listeningScore, setListeningScore] = useState<LanguageProficiency>("Less than high basic (CLB3-, IELTS 2.5-3)");
+  const [speakingScore, setSpeakingScore] = useState<LanguageProficiency>("Less than high basic (CLB3-, IELTS 2.5-3)");
+
   const [secondLanguage, setSecondLanguage] = useState<SecondLanguage>("No");
   const [eligibilityMessage, setEligibilityMessage] = useState<string>("");
 
   const handleSubmit = () => {
     const totalPoints = getAgePoints(age) + getWorkYearsPoints(workYears) + getWorkExperiencePoints(principalCanadaWork) + getEducationPoints(education);
     const adaptabilityPoints = getAdaptabilityPoints(principalCanadaWork, principalPreviousStudy, spousePreviousStudy, spouseCanadaWork, spouseLanguage, canadianRelative);
-    const languagePoints = getLanguagePoints(languageScore);
+    // const languagePoints = getLanguagePoints(languageScore);
+    
+    // Testing Feature
+    const languagePoints = getLanguagePoints(readingScore) +getLanguagePoints(writingScore) + getLanguagePoints(listeningScore) + getLanguagePoints(speakingScore);
+
     const secondLangPoints = getSecondLanguagePoints(secondLanguage);
     const finalPoints = totalPoints + adaptabilityPoints + languagePoints + secondLangPoints;
 
@@ -183,14 +199,63 @@ const Calculator: React.FC = () => {
           </select>
         </label>
 
-        {/* Language Score Dropdown */}
+        {/* Writing Score Dropdown */}
         <label className="font-bold block mb-4">
-          Language Score:
-          <select value={languageScore} onChange={(e) => setLanguageScore(e.target.value as LanguageScore)} className="mt-4 w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
-            <option value="Below Average">Below Average</option>
-            <option value="Average">Average</option>
-            <option value="Above Average">Above Average</option>
-            <option value="Excellent">Excellent</option>
+          Writing Score:
+          <select value={writingScore} onChange={(e) => setWritingScore(e.target.value as LanguageProficiency)} className="mt-4 w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
+          <option value="Less than high basic (CLB3-, IELTS 2.5-3)">Less than high basic (CLB3-, IELTS 2.5-3)</option>
+            <option value="High basic (CLB4, IELTS 3.5)">High basic (CLB4, IELTS 3.5)</option>
+            <option value="Initial intermediate (CLB5, IELTS 4-4.5)">Initial intermediate (CLB5, IELTS 4-4.5)</option>
+            <option value="Developing intermediate (CLB6, IELTS 5-5.5)">Developing intermediate (CLB6, IELTS 5-5.5)</option>
+            <option value="Adequate intermediate (CLB7, IELTS 6)">Adequate intermediate (CLB7, IELTS 6)</option>
+            <option value="High intermediate (CLB8, IELTS 6.5)">High intermediate (CLB8, IELTS 6.5)</option>
+            <option value="Initial Advanced (CLB9, IELTS 7)">Initial Advanced (CLB9, IELTS 7)</option>
+            <option value="Advanced (CLB10+, IELTS 8+)">Advanced (CLB10+, IELTS 8+)</option>
+          </select>
+        </label>
+
+        {/* Reading Score Dropdown */}
+        <label className="font-bold block mb-4">
+          Reading Score:
+          <select value={readingScore} onChange={(e) => setReadingScore(e.target.value as LanguageProficiency)} className="mt-4 w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
+          <option value="Less than high basic (CLB3-, IELTS 2.5-3)">Less than high basic (CLB3-, IELTS 2.5-3)</option>
+            <option value="High basic (CLB4, IELTS 3.5)">High basic (CLB4, IELTS 3.5)</option>
+            <option value="Initial intermediate (CLB5, IELTS 4-4.5)">Initial intermediate (CLB5, IELTS 4-4.5)</option>
+            <option value="Developing intermediate (CLB6, IELTS 5-5.5)">Developing intermediate (CLB6, IELTS 5-5.5)</option>
+            <option value="Adequate intermediate (CLB7, IELTS 6)">Adequate intermediate (CLB7, IELTS 6)</option>
+            <option value="High intermediate (CLB8, IELTS 6.5)">High intermediate (CLB8, IELTS 6.5)</option>
+            <option value="Initial Advanced (CLB9, IELTS 7)">Initial Advanced (CLB9, IELTS 7)</option>
+            <option value="Advanced (CLB10+, IELTS 8+)">Advanced (CLB10+, IELTS 8+)</option>
+          </select>
+        </label>
+
+        {/* Writing Score Dropdown */}
+        <label className="font-bold block mb-4">
+          Speaking Score:
+          <select value={speakingScore} onChange={(e) => setSpeakingScore(e.target.value as LanguageProficiency)} className="mt-4 w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
+          <option value="Less than high basic (CLB3-, IELTS 2.5-3)">Less than high basic (CLB3-, IELTS 2.5-3)</option>
+            <option value="High basic (CLB4, IELTS 3.5)">High basic (CLB4, IELTS 3.5)</option>
+            <option value="Initial intermediate (CLB5, IELTS 4-4.5)">Initial intermediate (CLB5, IELTS 4-4.5)</option>
+            <option value="Developing intermediate (CLB6, IELTS 5-5.5)">Developing intermediate (CLB6, IELTS 5-5.5)</option>
+            <option value="Adequate intermediate (CLB7, IELTS 6)">Adequate intermediate (CLB7, IELTS 6)</option>
+            <option value="High intermediate (CLB8, IELTS 6.5)">High intermediate (CLB8, IELTS 6.5)</option>
+            <option value="Initial Advanced (CLB9, IELTS 7)">Initial Advanced (CLB9, IELTS 7)</option>
+            <option value="Advanced (CLB10+, IELTS 8+)">Advanced (CLB10+, IELTS 8+)</option>
+          </select>
+        </label>
+
+        {/* Reading Score Dropdown */}
+        <label className="font-bold block mb-4">
+          Listening Score:
+          <select value={listeningScore} onChange={(e) => setListeningScore(e.target.value as LanguageProficiency)} className="mt-4 w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
+          <option value="Less than high basic (CLB3-, IELTS 2.5-3)">Less than high basic (CLB3-, IELTS 2.5-3)</option>
+            <option value="High basic (CLB4, IELTS 3.5)">High basic (CLB4, IELTS 3.5)</option>
+            <option value="Initial intermediate (CLB5, IELTS 4-4.5)">Initial intermediate (CLB5, IELTS 4-4.5)</option>
+            <option value="Developing intermediate (CLB6, IELTS 5-5.5)">Developing intermediate (CLB6, IELTS 5-5.5)</option>
+            <option value="Adequate intermediate (CLB7, IELTS 6)">Adequate intermediate (CLB7, IELTS 6)</option>
+            <option value="High intermediate (CLB8, IELTS 6.5)">High intermediate (CLB8, IELTS 6.5)</option>
+            <option value="Initial Advanced (CLB9, IELTS 7)">Initial Advanced (CLB9, IELTS 7)</option>
+            <option value="Advanced (CLB10+, IELTS 8+)">Advanced (CLB10+, IELTS 8+)</option>
           </select>
         </label>
 
