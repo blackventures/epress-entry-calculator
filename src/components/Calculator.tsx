@@ -134,9 +134,9 @@ const Calculator: React.FC = () => {
   const [languageScore, setLanguageScore] = useState<LanguageScore>("Below Average");
 
   const [readingScore, setReadingScore] = useState<LanguageProficiency>("Less than high basic (CLB3-, IELTS 2.5-3)");
-  const [writingScore, setwritingScore] = useState<LanguageProficiency>("Less than high basic (CLB3-, IELTS 2.5-3)");
-  const [listeningScore, setlisteningScore] = useState<LanguageProficiency>("Less than high basic (CLB3-, IELTS 2.5-3)");
-  const [speakingScore, setspeakingScore] = useState<LanguageProficiency>("Less than high basic (CLB3-, IELTS 2.5-3)");
+  const [writingScore, setWritingScore] = useState<LanguageProficiency>("Less than high basic (CLB3-, IELTS 2.5-3)");
+  const [listeningScore, setListeningScore] = useState<LanguageProficiency>("Less than high basic (CLB3-, IELTS 2.5-3)");
+  const [speakingScore, setSpeakingScore] = useState<LanguageProficiency>("Less than high basic (CLB3-, IELTS 2.5-3)");
 
   const [secondLanguage, setSecondLanguage] = useState<SecondLanguage>("No");
   const [eligibilityMessage, setEligibilityMessage] = useState<string>("");
@@ -209,7 +209,7 @@ const Calculator: React.FC = () => {
         </label>
 
         {/* Language Score Dropdown */}
-        <label className="font-bold block mb-4">
+        {/* <label className="font-bold block mb-4">
           Language Score:
           <select value={languageScore} onChange={(e) => setLanguageScore(e.target.value as LanguageScore)} className="mt-4 w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
             <option value="Below Average">Below Average</option>
@@ -217,12 +217,57 @@ const Calculator: React.FC = () => {
             <option value="Above Average">Above Average</option>
             <option value="Excellent">Excellent</option>
           </select>
-        </label>
+        </label> */}
 
         {/* Reading Score Dropdown */}
         <label className="font-bold block mb-4">
-          Reading Score:
+          Reading Test Score:
           <select value={readingScore} onChange={(e) => setReadingScore(e.target.value as LanguageProficiency)} className="mt-4 w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
+          <option value="Less than high basic (CLB3-, IELTS 2.5-3)">Less than high basic (CLB3-, IELTS 2.5-3)</option>
+            <option value="High basic (CLB4, IELTS 3.5)">High basic (CLB4, IELTS 3.5)</option>
+            <option value="Initial intermediate (CLB5, IELTS 4-4.5)">Initial intermediate (CLB5, IELTS 4-4.5)</option>
+            <option value="Developing intermediate (CLB6, IELTS 5-5.5)">Developing intermediate (CLB6, IELTS 5-5.5)</option>
+            <option value="Adequate intermediate (CLB7, IELTS 6)">Adequate intermediate (CLB7, IELTS 6)</option>
+            <option value="High intermediate (CLB8, IELTS 6.5)">High intermediate (CLB8, IELTS 6.5)</option>
+            <option value="Initial Advanced (CLB9, IELTS 7)">Initial Advanced (CLB9, IELTS 7)</option>
+            <option value="Advanced (CLB10+, IELTS 8+)">Advanced (CLB10+, IELTS 8+)</option>
+          </select>
+        </label>
+
+        {/* Writing Score Dropdown */}
+        <label className="font-bold block mb-4">
+          Writing Test Score:
+          <select value={writingScore} onChange={(e) => setWritingScore(e.target.value as LanguageProficiency)} className="mt-4 w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
+          <option value="Less than high basic (CLB3-, IELTS 2.5-3)">Less than high basic (CLB3-, IELTS 2.5-3)</option>
+            <option value="High basic (CLB4, IELTS 3.5)">High basic (CLB4, IELTS 3.5)</option>
+            <option value="Initial intermediate (CLB5, IELTS 4-4.5)">Initial intermediate (CLB5, IELTS 4-4.5)</option>
+            <option value="Developing intermediate (CLB6, IELTS 5-5.5)">Developing intermediate (CLB6, IELTS 5-5.5)</option>
+            <option value="Adequate intermediate (CLB7, IELTS 6)">Adequate intermediate (CLB7, IELTS 6)</option>
+            <option value="High intermediate (CLB8, IELTS 6.5)">High intermediate (CLB8, IELTS 6.5)</option>
+            <option value="Initial Advanced (CLB9, IELTS 7)">Initial Advanced (CLB9, IELTS 7)</option>
+            <option value="Advanced (CLB10+, IELTS 8+)">Advanced (CLB10+, IELTS 8+)</option>
+          </select>
+        </label>
+
+        {/* Speaking Score Dropdown */}
+        <label className="font-bold block mb-4">
+          Speaking Test Score:
+          <select value={speakingScore} onChange={(e) => setSpeakingScore(e.target.value as LanguageProficiency)} className="mt-4 w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
+          <option value="Less than high basic (CLB3-, IELTS 2.5-3)">Less than high basic (CLB3-, IELTS 2.5-3)</option>
+            <option value="High basic (CLB4, IELTS 3.5)">High basic (CLB4, IELTS 3.5)</option>
+            <option value="Initial intermediate (CLB5, IELTS 4-4.5)">Initial intermediate (CLB5, IELTS 4-4.5)</option>
+            <option value="Developing intermediate (CLB6, IELTS 5-5.5)">Developing intermediate (CLB6, IELTS 5-5.5)</option>
+            <option value="Adequate intermediate (CLB7, IELTS 6)">Adequate intermediate (CLB7, IELTS 6)</option>
+            <option value="High intermediate (CLB8, IELTS 6.5)">High intermediate (CLB8, IELTS 6.5)</option>
+            <option value="Initial Advanced (CLB9, IELTS 7)">Initial Advanced (CLB9, IELTS 7)</option>
+            <option value="Advanced (CLB10+, IELTS 8+)">Advanced (CLB10+, IELTS 8+)</option>
+          </select>
+        </label>
+
+        {/* Listening Score Dropdown */}
+        <label className="font-bold block mb-4">
+          Listening Test Score:
+          <select value={listeningScore} onChange={(e) => setListeningScore(e.target.value as LanguageProficiency)} className="mt-4 w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
           <option value="Less than high basic (CLB3-, IELTS 2.5-3)">Less than high basic (CLB3-, IELTS 2.5-3)</option>
             <option value="High basic (CLB4, IELTS 3.5)">High basic (CLB4, IELTS 3.5)</option>
             <option value="Initial intermediate (CLB5, IELTS 4-4.5)">Initial intermediate (CLB5, IELTS 4-4.5)</option>
