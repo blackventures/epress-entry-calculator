@@ -134,9 +134,9 @@ const Calculator: React.FC = () => {
   const [languageScore, setLanguageScore] = useState<LanguageScore>("Below Average");
 
   const [readingScore, setReadingScore] = useState<LanguageProficiency>("Less than high basic (CLB3-, IELTS 2.5-3)");
-  const [writingScore, setwritingScore] = useState<LanguageScore>("Less than high basic (CLB3-, IELTS 2.5-3)");
-  const [listeningScore, setlisteningScore] = useState<LanguageScore>("Less than high basic (CLB3-, IELTS 2.5-3)");
-  const [speakingScore, setspeakingScore] = useState<LanguageScore>("Less than high basic (CLB3-, IELTS 2.5-3)");
+  const [writingScore, setwritingScore] = useState<LanguageProficiency>("Less than high basic (CLB3-, IELTS 2.5-3)");
+  const [listeningScore, setlisteningScore] = useState<LanguageProficiency>("Less than high basic (CLB3-, IELTS 2.5-3)");
+  const [speakingScore, setspeakingScore] = useState<LanguageProficiency>("Less than high basic (CLB3-, IELTS 2.5-3)");
 
   const [secondLanguage, setSecondLanguage] = useState<SecondLanguage>("No");
   const [eligibilityMessage, setEligibilityMessage] = useState<string>("");
