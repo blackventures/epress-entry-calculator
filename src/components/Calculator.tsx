@@ -146,7 +146,7 @@ const Calculator: React.FC = () => {
     const adaptabilityPoints = getAdaptabilityPoints(principalCanadaWork, principalPreviousStudy, spousePreviousStudy, spouseCanadaWork, spouseLanguage, canadianRelative);
     // const languagePoints = getLanguagePoints(languageScore);
     // 
-    const languagePoints = getSectionPoints(languageScore) + getSectionPoints(languageScore) + getSectionPoints(languageScore) + getSectionPoints(languageScore);
+    const languagePoints = getSectionPoints(writingScore) + getSectionPoints(listeningScore) + getSectionPoints(readingScore) + getSectionPoints(speakingScore);
     const secondLangPoints = getSecondLanguagePoints(secondLanguage);
     const finalPoints = totalPoints + adaptabilityPoints + languagePoints + secondLangPoints;
 
