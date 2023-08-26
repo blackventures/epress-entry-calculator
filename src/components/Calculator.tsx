@@ -13,7 +13,7 @@ type Education =
 type YesNo = "Yes" | "No";
 type LanguageScore = "Below Average" | "Average" | "Above Average" | "Excellent";
 
-type LanguageProficiency = "Less than high basic (CLB3-, IELTS 2.5-3)" | "High basic (CLB4, IELTS 3.5)" | "Initial intermediate (CLB5, IELTS 4-4.5)" | "Developing intermediate (CLB6, IELTS 5-5.5)" | "Adequate intermediate (CLB7, IELTS 6)" | "High intermediate (CLB8, IELTS 6.5)" | "Initial Advanced (CLB9, IELTS 7)" | "Advanced (CLB10+, IELTS 8+)";
+type LanguageProficiency = "Less than high basic (CELPIP 2-3, IELTS 2.5-3)" | "High basic (CELPIP 4, IELTS 3.5)" | "Initial intermediate (CELPIP 5, IELTS 4-4.5)" | "Developing intermediate (CELPIP 6, IELTS 5-5.5)" | "Adequate intermediate (CELPIP 7, IELTS 6)" | "High intermediate (CELPIP 8, IELTS 6.5)" | "Initial Advanced (CELPIP 9, IELTS 7)" | "Advanced (CELPIP 10, IELTS 8+)";
 
 type SecondLanguage = "Yes" | "No";
 
@@ -105,14 +105,14 @@ function getLanguagePoints(score: LanguageScore): number {
 
 function getSectionPoints(score: LanguageProficiency): number {
   switch (score) {
-    case "Less than high basic (CLB3-, IELTS 2.5-3)": return 0;
-    case "High basic (CLB4, IELTS 3.5)": return 0;
-    case "Initial intermediate (CLB5, IELTS 4-4.5)": return 0;
-    case "Developing intermediate (CLB6, IELTS 5-5.5)": return 0;
-    case "Adequate intermediate (CLB7, IELTS 6)": return 4;
-    case "High intermediate (CLB8, IELTS 6.5)": return 5;
-    case "Initial Advanced (CLB9, IELTS 7)": return 6;
-    case "Advanced (CLB10+, IELTS 8+)": return 6;
+    case "Less than high basic (CELPIP 2-3, IELTS 2.5-3)": return 0;
+    case "High basic (CELPIP 4, IELTS 3.5)": return 0;
+    case "Initial intermediate (CELPIP 5, IELTS 4-4.5)": return 0;
+    case "Developing intermediate (CELPIP 6, IELTS 5-5.5)": return 0;
+    case "Adequate intermediate (CELPIP 7, IELTS 6)": return 4;
+    case "High intermediate (CELPIP 8, IELTS 6.5)": return 5;
+    case "Initial Advanced (CELPIP 9, IELTS 7)": return 6;
+    case "Advanced (CELPIP 10, IELTS 8+)": return 6;
     default: return 0;
   }
 }
@@ -133,10 +133,10 @@ const Calculator: React.FC = () => {
   const [canadianRelative, setCanadianRelative] = useState<YesNo>("No");
   const [languageScore, setLanguageScore] = useState<LanguageScore>("Below Average");
 
-  const [readingScore, setReadingScore] = useState<LanguageProficiency>("Less than high basic (CLB3-, IELTS 2.5-3)");
-  const [writingScore, setWritingScore] = useState<LanguageProficiency>("Less than high basic (CLB3-, IELTS 2.5-3)");
-  const [listeningScore, setListeningScore] = useState<LanguageProficiency>("Less than high basic (CLB3-, IELTS 2.5-3)");
-  const [speakingScore, setSpeakingScore] = useState<LanguageProficiency>("Less than high basic (CLB3-, IELTS 2.5-3)");
+  const [readingScore, setReadingScore] = useState<LanguageProficiency>("Less than high basic (CELPIP 2-3, IELTS 2.5-3)");
+  const [writingScore, setWritingScore] = useState<LanguageProficiency>("Less than high basic (CELPIP 2-3, IELTS 2.5-3)");
+  const [listeningScore, setListeningScore] = useState<LanguageProficiency>("Less than high basic (CELPIP 2-3, IELTS 2.5-3)");
+  const [speakingScore, setSpeakingScore] = useState<LanguageProficiency>("Less than high basic (CELPIP 2-3, IELTS 2.5-3)");
 
   const [secondLanguage, setSecondLanguage] = useState<SecondLanguage>("No");
   const [eligibilityMessage, setEligibilityMessage] = useState<string>("");
@@ -223,14 +223,14 @@ const Calculator: React.FC = () => {
         <label className="font-bold block mb-4">
           Reading Test Score:
           <select value={readingScore} onChange={(e) => setReadingScore(e.target.value as LanguageProficiency)} className="mt-4 w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
-          <option value="Less than high basic (CLB3-, IELTS 2.5-3)">Less than high basic (CLB3-, IELTS 2.5-3)</option>
-            <option value="High basic (CLB4, IELTS 3.5)">High basic (CLB4, IELTS 3.5)</option>
-            <option value="Initial intermediate (CLB5, IELTS 4-4.5)">Initial intermediate (CLB5, IELTS 4-4.5)</option>
-            <option value="Developing intermediate (CLB6, IELTS 5-5.5)">Developing intermediate (CLB6, IELTS 5-5.5)</option>
-            <option value="Adequate intermediate (CLB7, IELTS 6)">Adequate intermediate (CLB7, IELTS 6)</option>
-            <option value="High intermediate (CLB8, IELTS 6.5)">High intermediate (CLB8, IELTS 6.5)</option>
-            <option value="Initial Advanced (CLB9, IELTS 7)">Initial Advanced (CLB9, IELTS 7)</option>
-            <option value="Advanced (CLB10+, IELTS 8+)">Advanced (CLB10+, IELTS 8+)</option>
+          <option value="Less than high basic (CELPIP 2-3, IELTS 2.5-3)">Less than high basic (CELPIP 2-3, IELTS 2.5-3)</option>
+            <option value="High basic (CELPIP 4, IELTS 3.5)">High basic (CELPIP 4, IELTS 3.5)</option>
+            <option value="Initial intermediate (CELPIP 5, IELTS 4-4.5)">Initial intermediate (CELPIP 5, IELTS 4-4.5)</option>
+            <option value="Developing intermediate (CELPIP 6, IELTS 5-5.5)">Developing intermediate (CELPIP 6, IELTS 5-5.5)</option>
+            <option value="Adequate intermediate (CELPIP 7, IELTS 6)">Adequate intermediate (CELPIP 7, IELTS 6)</option>
+            <option value="High intermediate (CELPIP 8, IELTS 6.5)">High intermediate (CELPIP 8, IELTS 6.5)</option>
+            <option value="Initial Advanced (CELPIP 9, IELTS 7)">Initial Advanced (CELPIP 9, IELTS 7)</option>
+            <option value="Advanced (CELPIP 10, IELTS 8+)">Advanced (CELPIP 10, IELTS 8+)</option>
           </select>
         </label>
 
@@ -238,14 +238,14 @@ const Calculator: React.FC = () => {
         <label className="font-bold block mb-4">
           Writing Test Score:
           <select value={writingScore} onChange={(e) => setWritingScore(e.target.value as LanguageProficiency)} className="mt-4 w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
-          <option value="Less than high basic (CLB3-, IELTS 2.5-3)">Less than high basic (CLB3-, IELTS 2.5-3)</option>
-            <option value="High basic (CLB4, IELTS 3.5)">High basic (CLB4, IELTS 3.5)</option>
-            <option value="Initial intermediate (CLB5, IELTS 4-4.5)">Initial intermediate (CLB5, IELTS 4-4.5)</option>
-            <option value="Developing intermediate (CLB6, IELTS 5-5.5)">Developing intermediate (CLB6, IELTS 5-5.5)</option>
-            <option value="Adequate intermediate (CLB7, IELTS 6)">Adequate intermediate (CLB7, IELTS 6)</option>
-            <option value="High intermediate (CLB8, IELTS 6.5)">High intermediate (CLB8, IELTS 6.5)</option>
-            <option value="Initial Advanced (CLB9, IELTS 7)">Initial Advanced (CLB9, IELTS 7)</option>
-            <option value="Advanced (CLB10+, IELTS 8+)">Advanced (CLB10+, IELTS 8+)</option>
+          <option value="Less than high basic (CELPIP 2-3, IELTS 2.5-3)">Less than high basic (CELPIP 2-3, IELTS 2.5-3)</option>
+            <option value="High basic (CELPIP 4, IELTS 3.5)">High basic (CELPIP 4, IELTS 3.5)</option>
+            <option value="Initial intermediate (CELPIP 5, IELTS 4-4.5)">Initial intermediate (CELPIP 5, IELTS 4-4.5)</option>
+            <option value="Developing intermediate (CELPIP 6, IELTS 5-5.5)">Developing intermediate (CELPIP 6, IELTS 5-5.5)</option>
+            <option value="Adequate intermediate (CELPIP 7, IELTS 6)">Adequate intermediate (CELPIP 7, IELTS 6)</option>
+            <option value="High intermediate (CELPIP 8, IELTS 6.5)">High intermediate (CELPIP 8, IELTS 6.5)</option>
+            <option value="Initial Advanced (CELPIP 9, IELTS 7)">Initial Advanced (CELPIP 9, IELTS 7)</option>
+            <option value="Advanced (CELPIP 10, IELTS 8+)">Advanced (CELPIP 10, IELTS 8+)</option>
           </select>
         </label>
 
@@ -253,14 +253,14 @@ const Calculator: React.FC = () => {
         <label className="font-bold block mb-4">
           Speaking Test Score:
           <select value={speakingScore} onChange={(e) => setSpeakingScore(e.target.value as LanguageProficiency)} className="mt-4 w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
-          <option value="Less than high basic (CLB3-, IELTS 2.5-3)">Less than high basic (CLB3-, IELTS 2.5-3)</option>
-            <option value="High basic (CLB4, IELTS 3.5)">High basic (CLB4, IELTS 3.5)</option>
-            <option value="Initial intermediate (CLB5, IELTS 4-4.5)">Initial intermediate (CLB5, IELTS 4-4.5)</option>
-            <option value="Developing intermediate (CLB6, IELTS 5-5.5)">Developing intermediate (CLB6, IELTS 5-5.5)</option>
-            <option value="Adequate intermediate (CLB7, IELTS 6)">Adequate intermediate (CLB7, IELTS 6)</option>
-            <option value="High intermediate (CLB8, IELTS 6.5)">High intermediate (CLB8, IELTS 6.5)</option>
-            <option value="Initial Advanced (CLB9, IELTS 7)">Initial Advanced (CLB9, IELTS 7)</option>
-            <option value="Advanced (CLB10+, IELTS 8+)">Advanced (CLB10+, IELTS 8+)</option>
+          <option value="Less than high basic (CELPIP 2-3, IELTS 2.5-3)">Less than high basic (CELPIP 2-3, IELTS 2.5-3)</option>
+            <option value="High basic (CELPIP 4, IELTS 3.5)">High basic (CELPIP 4, IELTS 3.5)</option>
+            <option value="Initial intermediate (CELPIP 5, IELTS 4-4.5)">Initial intermediate (CELPIP 5, IELTS 4-4.5)</option>
+            <option value="Developing intermediate (CELPIP 6, IELTS 5-5.5)">Developing intermediate (CELPIP 6, IELTS 5-5.5)</option>
+            <option value="Adequate intermediate (CELPIP 7, IELTS 6)">Adequate intermediate (CELPIP 7, IELTS 6)</option>
+            <option value="High intermediate (CELPIP 8, IELTS 6.5)">High intermediate (CELPIP 8, IELTS 6.5)</option>
+            <option value="Initial Advanced (CELPIP 9, IELTS 7)">Initial Advanced (CELPIP 9, IELTS 7)</option>
+            <option value="Advanced (CELPIP 10, IELTS 8+)">Advanced (CELPIP 10, IELTS 8+)</option>
           </select>
         </label>
 
@@ -268,14 +268,14 @@ const Calculator: React.FC = () => {
         <label className="font-bold block mb-4">
           Listening Test Score:
           <select value={listeningScore} onChange={(e) => setListeningScore(e.target.value as LanguageProficiency)} className="mt-4 w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
-          <option value="Less than high basic (CLB3-, IELTS 2.5-3)">Less than high basic (CLB3-, IELTS 2.5-3)</option>
-            <option value="High basic (CLB4, IELTS 3.5)">High basic (CLB4, IELTS 3.5)</option>
-            <option value="Initial intermediate (CLB5, IELTS 4-4.5)">Initial intermediate (CLB5, IELTS 4-4.5)</option>
-            <option value="Developing intermediate (CLB6, IELTS 5-5.5)">Developing intermediate (CLB6, IELTS 5-5.5)</option>
-            <option value="Adequate intermediate (CLB7, IELTS 6)">Adequate intermediate (CLB7, IELTS 6)</option>
-            <option value="High intermediate (CLB8, IELTS 6.5)">High intermediate (CLB8, IELTS 6.5)</option>
-            <option value="Initial Advanced (CLB9, IELTS 7)">Initial Advanced (CLB9, IELTS 7)</option>
-            <option value="Advanced (CLB10+, IELTS 8+)">Advanced (CLB10+, IELTS 8+)</option>
+          <option value="Less than high basic (CELPIP 2-3, IELTS 2.5-3)">Less than high basic (CELPIP 2-3, IELTS 2.5-3)</option>
+            <option value="High basic (CELPIP 4, IELTS 3.5)">High basic (CELPIP 4, IELTS 3.5)</option>
+            <option value="Initial intermediate (CELPIP 5, IELTS 4-4.5)">Initial intermediate (CELPIP 5, IELTS 4-4.5)</option>
+            <option value="Developing intermediate (CELPIP 6, IELTS 5-5.5)">Developing intermediate (CELPIP 6, IELTS 5-5.5)</option>
+            <option value="Adequate intermediate (CELPIP 7, IELTS 6)">Adequate intermediate (CELPIP 7, IELTS 6)</option>
+            <option value="High intermediate (CELPIP 8, IELTS 6.5)">High intermediate (CELPIP 8, IELTS 6.5)</option>
+            <option value="Initial Advanced (CELPIP 9, IELTS 7)">Initial Advanced (CELPIP 9, IELTS 7)</option>
+            <option value="Advanced (CELPIP 10, IELTS 8+)">Advanced (CELPIP 10, IELTS 8+)</option>
           </select>
         </label>
 
