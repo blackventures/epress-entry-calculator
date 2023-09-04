@@ -133,7 +133,7 @@ const Calculator: React.FC = () => {
   };
 
   return (
-    <div className="p-4 grid grid-cols-3 gap-x-4">
+    <div className="p-4 grid grid-cols-3 sm:grid-cols-2 gap-x-4">
       {/* Column 1 */}
       <div className="">
         {/* Age Input */}
